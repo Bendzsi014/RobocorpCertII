@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 5.0.1 (Python 3.9.13 on win32)" generated="20220818 12:55:56.979" rpa="true" schemaversion="3">
+<suite id="s1" name="Tasks" source="c:\Users\E1353816\Documents\Robocorp\Cert II\tasks.robot">
+<test id="s1-t1" name="Order robots from RobotSpareBin Industries Inc" line="14">
+<kw name="Open the robot order website">
+<kw name="Open Available Browser" library="RPA.Browser.Selenium">
+<arg>https://robotsparebinindustries.com/#/robot-order</arg>
+<doc>Attempts to open a browser on the user's device from a set of
+supported browsers. Automatically downloads a corresponding webdriver
+if none is already installed.</doc>
+<msg timestamp="20220818 12:55:59.260" level="INFO">Creating an instance of the Chrome WebDriver.</msg>
+<msg timestamp="20220818 12:55:59.313" level="INFO">Created download root directory: C:\Users\E1353816\AppData\Local\robocorp\webdrivers</msg>
+<msg timestamp="20220818 12:55:59.314" level="INFO">Created symlink directory: C:\Users\E1353816\AppData\Local\robocorp\webdrivers</msg>
+<msg timestamp="20220818 12:55:59.315" level="INFO">Creating an instance of the Chrome WebDriver.</msg>
+<msg timestamp="20220818 12:56:00.695" level="INFO">Created Chrome browser with arguments: --disable-dev-shm-usage --disable-web-security --allow-running-insecure-content --no-sandbox</msg>
+<msg timestamp="20220818 12:56:00.695" level="INFO" html="true">&lt;p&gt;Attempted combinations:&lt;/p&gt;&lt;div class="doc"&gt;&lt;table&gt;&lt;tr&gt;&lt;th&gt;Browser&lt;/th&gt;&lt;th&gt;Download&lt;/th&gt;&lt;th&gt;Error&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Chrome&lt;/td&gt;&lt;td&gt;False&lt;/td&gt;&lt;td&gt;Message: 'chromedriver' executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home
+&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Chrome&lt;/td&gt;&lt;td&gt;True&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;</msg>
+<msg timestamp="20220818 12:56:00.696" level="INFO">Opening url 'https://robotsparebinindustries.com/#/robot-order'</msg>
+<status status="PASS" starttime="20220818 12:55:59.258" endtime="20220818 12:56:02.566"/>
+</kw>
+<status status="PASS" starttime="20220818 12:55:59.252" endtime="20220818 12:56:02.567"/>
+</kw>
+<kw name="Handle Pop-up">
+<kw name="Click Button" library="RPA.Browser.Selenium">
+<arg>OK</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20220818 12:56:02.574" level="INFO">Clicking button 'OK'.</msg>
+<status status="PASS" starttime="20220818 12:56:02.570" endtime="20220818 12:56:02.663"/>
+</kw>
+<status status="PASS" starttime="20220818 12:56:02.568" endtime="20220818 12:56:02.663"/>
+</kw>
+<kw name="Get orders">
+<var>${Orders}</var>
+<arg>https://robotsparebinindustries.com/orders.csv</arg>
+<kw name="Download" library="RPA.HTTP">
+<arg>${url}</arg>
+<arg>target_file=${OUTPUT_DIR}${/}Orders.csv</arg>
+<arg>overwrite=${TRUE}</arg>
+<doc>An alias for the ``HTTP Get`` keyword.</doc>
+<msg timestamp="20220818 12:56:11.143" level="INFO">Creating a new HTTP session</msg>
+<msg timestamp="20220818 12:56:11.143" level="INFO">Creating Session using : alias=rpasession_alias.httpsrobotsparebinindustries.com, url=https://robotsparebinindustries.com, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=True,                     debug=0 </msg>
+<status status="PASS" starttime="20220818 12:56:09.516" endtime="20220818 12:56:11.920"/>
+</kw>
+<kw name="Read table from CSV" library="RPA.Tables">
+<var>${table}</var>
+<arg>${OUTPUT_DIR}${/}Orders.csv</arg>
+<doc>Read a CSV file as a table.</doc>
+<msg timestamp="20220818 12:56:15.424" level="INFO">${table} = Table(columns=['Order number', 'Head', 'Body', 'Legs', 'Address'], rows=20)</msg>
+<status status="PASS" starttime="20220818 12:56:11.920" endtime="20220818 12:56:15.424"/>
+</kw>
+<return>
+<value>${table}</value>
+<status status="PASS" starttime="20220818 12:56:15.425" endtime="20220818 12:56:21.486"/>
+</return>
+<msg timestamp="20220818 12:56:21.488" level="INFO">${Orders} = Table(columns=['Order number', 'Head', 'Body', 'Legs', 'Address'], rows=20)</msg>
+<status status="PASS" starttime="20220818 12:56:02.665" endtime="20220818 12:56:21.488"/>
+</kw>
+<status status="PASS" starttime="20220818 12:55:59.245" endtime="20220818 12:56:21.490"/>
+</test>
+<doc>Orders robots from RobotSpareBin Industries Inc.
+Saves the order HTML receipt as a PDF file.
+Saves the screenshot of the ordered robot.
+Embeds the screenshot of the robot to the PDF receipt.
+Creates ZIP archive of the receipts and the images.</doc>
+<status status="PASS" starttime="20220818 12:55:56.979" endtime="20220818 12:56:21.496"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tasks</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="Tasks">Tasks</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
